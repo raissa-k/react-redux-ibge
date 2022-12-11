@@ -1,70 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Busca por Município
 
-## Available Scripts
+Utiliza a API de Localidades do IBGE para popular opções de estados e, uma vez selecionado o estado, municípios.
+Quando o usuário escolhe um município - seja buscando por nome ou clicando na opção - carrega informações da localidade.
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+Hospedada em: https://react-redux-ibge.vercel.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img src="https://i.imgur.com/K711FLW.gif" alt="Animação da aplicação em uso" width="600px" height="auto">
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+`React`, `Redux`, `TailwindCSS`, `HeadlessUI`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`TailwindCSS` foi escolhido pela facilidade e agilidade na produção de proof of concepts sem necessidade de customização, embora DaisyUI tenha sido escolhido como plugin para criação de um tema com cores escolhidas para facilitar a leitura com contrastes apropriados. 
+Ainda no quesito de acessibilidade, a utilização de `HeadlessUI` garantiu agilidade na criação de componentes interativos e acessíveis via mouse, teclado, e leitor de telas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Referência
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### API
 
-### `npm run eject`
+```md
+  https://servicodados.ibge.gov.br/api/docs/localidades
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Instruções
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Passo |  Descrição                       |
+| :-------- | :-------------------------------- |
+| 1      | Criar um select para selecionar um estado. Utilizar a api: https://servicodados.ibge.gov.br/api/v1/localidades/etasdos; |
+| 2 | Criar um select para selecionar um município. Utilizar a api: https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios. Só deve mostrar os municípios do estado que foi selecionado, ou seja, o select de municípios é dependente do select de estados;
+| 3 | Ao selecionar um município mostrar as informações de microrregião, mesorregião, UF e região do município. Utilizar a api: https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{municipio}/distritos. Para mostrar essas informações na página, use sua criatividade.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Obrigatório
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Usar os três conceitos centrais do Redux: 
+- store 
+- reducers
+- actions
 
-## Learn More
+## Próximos passos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Refazer o projeto utilizando o hook nativo `useReducer` para comparação.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[WTFPL](https://choosealicense.com/licenses/wtfpl/)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
