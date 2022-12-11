@@ -1,0 +1,16 @@
+import * as React from 'react'
+import {Provider} from 'react-redux'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import {HomePage} from '../pages/HomePage'
+import {store} from '../redux/store'
+
+test('can render with redux initial fetch', () => {
+  render(
+    <Provider store={store}>
+      <HomePage />
+    </Provider>
+  )
+  userEvent.click(screen.getByLabelText("Escolha um estado."))
+  expect(screen.getByRole("listbox")).toHaveTextContent("Acre")
+})

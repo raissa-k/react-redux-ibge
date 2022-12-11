@@ -1,7 +1,6 @@
 import React from "react"
 
-function Header() {
-
+export default function Header() {
 	return (
 		<header className="sticky top-0 z-30 h-auto bg-opacity-90 backdrop-blur backdrop-filter  firefox:bg-opacity-90 bg-gradient-to-br from-primary-focus to-secondary-content py-4 px-6 text-primary-content">
 			<div className="mx-auto max-w-8xl flex flex-wrap gap-2 justify-between items-center">
@@ -17,5 +16,3 @@ function Header() {
 		</header>
 	)
 }
-
-export default Header

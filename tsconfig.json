@@ -20,6 +20,6 @@
 			"dom"
 		],
 	},
-	"include": ["src/**/*"],
+	"include": ["src/**/*", "src/setupTests.js"],
 	"exclude": ["node_modules", "**/*.spec.ts"]
 }

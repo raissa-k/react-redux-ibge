@@ -4,10 +4,10 @@ import { Combobox, Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { useAppDispatch, useAppSelector } from '../redux/types/reduxTypes';
 import { CityTypes } from '../types';
-import { fetchCities } from '../redux/slice';
+import { infoFetch } from '../redux/slices/infoSlice';
 
 
-const CitySelectMenu = () => {
+export default function CitySelectMenu() {
 	const dispatch = useAppDispatch();
 	const { status } = useAppSelector((state) => state.cidades);
 	const { cidades } = useAppSelector((state) => state.cidades);
@@ -24,14 +24,20 @@ const CitySelectMenu = () => {
 					.includes(query.toLowerCase().replace(/\s+/g, ''))
 			)
 
-		useEffect(() => {
-			if (status !== "fulfilled") setSelectedCity({} as CityTypes)
-		}, [status])
+	useEffect(() => {
+		if (status !== "fulfilled") setSelectedCity({} as CityTypes)
+	}, [status])
+
+	function handleSelectedCity(item: CityTypes) {
+		const selectedCity = item.id
+		setSelectedCity(item)
+		dispatch(infoFetch(selectedCity))
+	}
 
 	return (
 		<div className="w-auto sm:w-72 max-w-xs mx-auto">
 			{cidades && status === "fulfilled" ?
-				<Combobox value={selectedCity} onChange={setSelectedCity}>
+				<Combobox value={selectedCity} onChange={handleSelectedCity}>
 					<Combobox.Label>
 						<span className="label-text text-secondary-content">Escolha uma cidade ou digite o nome.</span>
 					</Combobox.Label>
@@ -39,7 +45,7 @@ const CitySelectMenu = () => {
 						<div className="relative w-full cursor-default rounded-lg bg-white  shadow-md focus:outline-none focus-visible:border-accent-content focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-primary select-primary">
 							<Combobox.Input
 								className="w-full border-none py-4 pl-3 pr-10 text-left rounded-lg leading-5 text-neutral focus:ring-0 placeholder-secondary-content placeholder-opacity-40"
-								displayValue={(cidade:CityTypes) => cidade?.nome}
+								displayValue={(cidade: CityTypes) => cidade?.nome}
 								onChange={(event) => setQuery(event.target.value)}
 							/>
 							<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -55,7 +61,7 @@ const CitySelectMenu = () => {
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0"
 						>
-							<Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+							<Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 								{filteredCities.length === 0 && query !== '' ? (
 									<div className="relative cursor-default select-none py-2 px-4 text-neutral">
 										Nada encontrado.
@@ -111,5 +117,3 @@ const CitySelectMenu = () => {
 		</div>
 	);
 };
-
-export default CitySelectMenu;
