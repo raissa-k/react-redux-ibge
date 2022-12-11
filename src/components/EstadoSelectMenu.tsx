@@ -30,8 +30,8 @@ const EstadoSelectMenu = () => {
 						<span className="label-text text-secondary-content">Escolha um estado.</span>
 				</Listbox.Label>
 				<div className="relative mt-1">
-					<Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-4 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-accent-content focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-primary select-primary">
-						<span className="text-neutral truncate">{estados[0].nome}</span>
+					<Listbox.Button className="relative w-full cursor-default rounded-lg py-4 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-accent-content focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-primary bg-white">
+						<span className={`truncate ${selected ? 'text-neutral' : 'text-neutral/80'}`}>{selected?.nome ?? "Escolha um estado."}</span>
 						<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 							<ChevronUpDownIcon
 								className="h-5 w-5 text-neutral"

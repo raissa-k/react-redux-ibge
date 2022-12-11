@@ -24,24 +24,22 @@ const CitySelectMenu = () => {
 					.includes(query.toLowerCase().replace(/\s+/g, ''))
 			)
 
-	useEffect(() => {
-		if (status !== "fullfilled") return
-
-		setSelectedCity(cidades[0])
-	}, [cidades, status])
+		useEffect(() => {
+			if (status !== "fulfilled") setSelectedCity({} as CityTypes)
+		}, [status])
 
 	return (
 		<div className="w-auto sm:w-72 max-w-xs mx-auto">
-			{status === "fulfilled" && cidades ?
-				<Combobox value={selectedCity || cidades[0]} onChange={setSelectedCity}>
+			{cidades && status === "fulfilled" ?
+				<Combobox value={selectedCity} onChange={setSelectedCity}>
 					<Combobox.Label>
-						<span className="label-text text-secondary-content">Escolha uma cidade.</span>
+						<span className="label-text text-secondary-content">Escolha uma cidade ou digite o nome.</span>
 					</Combobox.Label>
 					<div className="relative mt-1">
 						<div className="relative w-full cursor-default rounded-lg bg-white  shadow-md focus:outline-none focus-visible:border-accent-content focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-primary select-primary">
 							<Combobox.Input
 								className="w-full border-none py-4 pl-3 pr-10 text-left rounded-lg leading-5 text-neutral focus:ring-0 placeholder-secondary-content placeholder-opacity-40"
-								displayValue={() => selectedCity ? selectedCity.nome : cidades[0].nome}
+								displayValue={(cidade:CityTypes) => cidade?.nome}
 								onChange={(event) => setQuery(event.target.value)}
 							/>
 							<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -62,7 +60,7 @@ const CitySelectMenu = () => {
 									<div className="relative cursor-default select-none py-2 px-4 text-neutral">
 										Nada encontrado.
 									</div>
-								) : (cidades.map((cidade) => (
+								) : (filteredCities.map((cidade) => (
 									<Combobox.Option
 										key={cidade.id}
 										className={({ active }) =>
@@ -70,7 +68,7 @@ const CitySelectMenu = () => {
 											}`
 										}
 										value={cidade}>
-										{({ selected, active }) => (
+										{({ selected }) => (
 											<>
 												<span
 													className={`block truncate ${selected ? 'font-medium' : 'font-normal'
