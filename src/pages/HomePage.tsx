@@ -1,13 +1,19 @@
 import React from 'react';
 import Header from '../components/Header';
+import EstadoSelectMenu from '../components/EstadoSelectMenu';
+import CitySelectMenu from '../components/CitySelectMenu';
 
-const HomePage = () => {	
-    return (
+
+const HomePage = () => {
+	return (
 		<>
-		<Header/>
-            <h1 className="prose text-primary">Initial commit</h1>
+			<Header />
+			<div className="relative max-w-4xl min-h-[300px] mx-auto p-4 mt-8 mb-12 md:flex flex-wrap items-start gap-6 space-y-6 md:space-y-0 justify-start rounded-xl bg-gradient-to-r from-secondary to-secondary-focus/60">
+			<EstadoSelectMenu />
+			<CitySelectMenu />
+			</div>
 		</>
-    );
+	);
 };
 
 export default HomePage;
