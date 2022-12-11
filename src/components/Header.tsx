@@ -1,15 +1,11 @@
 import React from "react"
-import { useLocation } from 'react-router-dom';
 
 function Header() {
-	const location = useLocation();
 
 	return (
-		<header className="sticky top-0 z-30 h-auto bg-opacity-90 backdrop-blur backdrop-filter  firefox:bg-opacity-90 bg-primary py-4 px-6 text-primary-content">
+		<header className="sticky top-0 z-30 h-auto bg-opacity-90 backdrop-blur backdrop-filter  firefox:bg-opacity-90 bg-gradient-to-br from-primary-focus to-secondary-content py-4 px-6 text-primary-content">
 			<div className="mx-auto max-w-8xl flex flex-wrap gap-2 justify-between items-center">
-				<p className="text-primary-content normal-case text-xl">Busca por Município</p>
-				{location.pathname === '/' && <a className="btn btn-primary btn-xs" href="/useReducer">com useReducer</a>}
-				{location.pathname === '/useReducer' && <a className="btn btn-primary btn-xs" href="/">com Redux</a>}
+				<img src="logo_mobile.png" className="h-8 w-auto" alt="Logo IBGE" />
 				<a className="btn btn-primary btn-circle btn-sm" href="https://github.com/raissa-k">
 					<span className="sr-only normal-case">Repositório no GitHub</span>
 					<svg viewBox="0 0 16 16" fill="currentColor" className="h-5 w-5">
